@@ -26,12 +26,10 @@ export default {
     };
   },
   computed: {
-    username() {
-      return this.$store.state.userInfo.user.name;
-    },
+    ...mapState('userInfo',['user'])
   },
   watch: {
-    username() {
+    user() {
       this.$router.replace("/");
     },
   },

@@ -20,8 +20,8 @@ export default {
                     ...data,
                     menus
                 })
-                //向Mutations发送信息
-                context.commit('LOGIN', {
+                //发向下个action
+                context.dispatch('send', {
                     ...data,
                     menus
                 })
@@ -31,18 +31,18 @@ export default {
         },
         loginTemp(context) {
             const time = Date.now()
+            const user = {
+                name: '游客' + time,
+                menus: ['/home', '/products', '/category', '/product', '/role', '/user', '/chart/bar', '/chart/line', '/chart/pie']
+            }
             //向sessionStorage保存用户信息
-            setUser_s({
-                name: '游客' + time,
-                menus: ['/home', '/products', '/category', '/product', '/role', '/user', '/chart/bar', '/chart/line', '/chart/pie']
-            })
-            //向Mutations发送信息
-            context.commit('LOGIN', {
-                name: '游客' + time,
-                menus: ['/home', '/products', '/category', '/product', '/role', '/user', '/chart/bar', '/chart/line', '/chart/pie']
-            })
+            setUser_s(user)
+            //发向下个action
+            context.dispatch('send', user)
+        },
+        send(context, value) {
+            context.commit('LOGIN', value)
         }
-
     },
 
     mutations: {

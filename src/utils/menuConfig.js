@@ -1,67 +1,55 @@
-import {
-    HomeOutlined,
-    BarsOutlined,
-    ApartmentOutlined,
-    UsergroupAddOutlined,
-    UserOutlined,
-    SlidersOutlined,
-    BarChartOutlined,
-    LineChartOutlined,
-    PieChartOutlined
-} from '@ant-design/icons'
-
 const menuConfig = [
     {
         key: '/home',
         title: '首页',
-        icon: <HomeOutlined />,
+        icon: 'el-icon-s-home',
     },
     {
         key: '/products',
         title: '商品总览',
-        icon: <BarsOutlined />,
+        icon: 'el-icon-menu',
         children: [
             {
                 key: '/category',
                 title: '品类管理',
-                icon: <ApartmentOutlined />
+                icon: 'el-icon-finished'
             },
             {
                 key: '/product',
                 title: '商品管理',
-                icon: <BarsOutlined />
+                icon: 'el-icon-turn-off'
             }
         ]
     },
     {
         key: '/role',
         title: '角色管理',
-        icon: <UsergroupAddOutlined />
+        icon: 'el-icon-more-outline'
     },
     {
         key: '/user',
         title: '用户管理',
-        icon: <UserOutlined />
+        icon: 'el-icon-user'
     },
     {
         key: '/chart',
         title: '图形图标',
-        icon: <SlidersOutlined />,
+        icon: 'el-icon-data-board',
         children: [
             {
                 key: '/chart/bar',
                 title: '柱状图',
-                icon: <BarChartOutlined />
+                icon: 'el-icon-data-analysis'
             },
             {
                 key: '/chart/line',
                 title: '线形图',
-                icon: <LineChartOutlined />
+                icon: 'el-icon-data-line'
             },
             {
                 key: '/chart/pie',
                 title: '饼状图',
-                icon: <PieChartOutlined />
+                icon: 'el-icon-pie-chart'
             }
         ]
     }

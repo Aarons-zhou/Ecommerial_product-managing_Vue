@@ -41,6 +41,9 @@ export default {
       },
     };
   },
+  computed:{
+    
+  },
   methods: {
     ...mapActions("userInfo", {
       handleLogin: "login",

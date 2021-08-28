@@ -1,14 +1,22 @@
 import VueRouter from 'vue-router'
+import store from '../store'
 import Login from '../Pages/Login'
 import Admin from '../Pages/Admin'
+import Home from '../Pages/Home'
 import { getUser_l, getUser_s } from "../utils/localStorage"
-
 
 const router = new VueRouter({
     routes: [
         {
             path: '/',
             component: Admin,
+            redirect: '/home',
+            children: [
+                {
+                    path: 'home',
+                    component: Home,
+                }
+            ]
         },
         {
             path: '/login',
@@ -18,13 +26,14 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const user_l = getUser_l()
-    const user_s = getUser_s()
-    user_l || user_s?(
-        to.path === '/login' ? next('/home') : next()
-    ):(
-        to.path === '/login' ? next() : next('/login')
-    )
+    let user = from.path === '/' ? getUser_l() || getUser_s() : store.state.userInfo.user
+    user = user || {}
+    user.name ?
+        (
+            to.path === '/login' ? next('/home') : next()
+        ) : (
+            to.path === '/login' ? next() : next('/login')
+        )
 })
 
 export default router
