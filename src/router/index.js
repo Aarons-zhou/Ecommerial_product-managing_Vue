@@ -3,10 +3,21 @@ import store from '../store'
 import Login from '../Pages/Login'
 import Admin from '../Pages/Admin'
 import Home from '../Pages/Home'
+import Category from '../Pages/Category'
+import Product from '../Pages/Product'
+import Role from '../Pages/Role'
+import User from '../Pages/User'
+import ChartBar from '../Pages/ChartBar'
+import ChartLine from '../Pages/ChartLine'
+import ChartPie from '../Pages/ChartPie'
 import { getUser_l, getUser_s } from "../utils/localStorage"
 
 const router = new VueRouter({
     routes: [
+        {
+            path: '/login',
+            component: Login,
+        },
         {
             path: '/',
             component: Admin,
@@ -15,12 +26,36 @@ const router = new VueRouter({
                 {
                     path: 'home',
                     component: Home,
+                },
+                {
+                    path: 'category',
+                    component: Category,
+                },
+                {
+                    path: 'product',
+                    component: Product,
+                },
+                {
+                    path: 'role',
+                    component: Role,
+                },
+                {
+                    path: 'user',
+                    component: User,
+                },
+                {
+                    path: 'chart/bar',
+                    component: ChartBar,
+                },
+                {
+                    path: 'chart/line',
+                    component: ChartLine,
+                },
+                {
+                    path: 'chart/pie',
+                    component: ChartPie,
                 }
             ]
-        },
-        {
-            path: '/login',
-            component: Login,
         }
     ]
 })

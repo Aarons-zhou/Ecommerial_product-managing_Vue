@@ -1,19 +1,22 @@
 <template>
   <el-col>
     <el-menu
-        v-for="item in menuConfig"
-        :key="item.key"
-        :index="item.key"
-        @open="handleOpen"
-        @close="handleClose"
-        background-color="#ffd2d7"
-        text-color="#684b50"
-        active-text-color="#ff9bc3"
+      v-for="item in menuConfig"
+      :key="item.key"
+      :index="item.key"
+      :router="true"
+      :default-active="activeKey"
+      background-color="#ffe2e7"
+      text-color="#684b50"
+      active-text-color="#ff9bc3"
     >
       <template v-if="item.children">
         <el-submenu
-          v-if="!!item.children.filter((cItem) => menus.indexOf(cItem.key) !== -1).length"
-          :index='item.key'
+          v-if="
+            !!item.children.filter((cItem) => menus.indexOf(cItem.key) !== -1)
+              .length
+          "
+          :index="item.key"
         >
           <template slot="title">
             <i :class="item.icon"></i>
@@ -24,6 +27,7 @@
               v-if="menus.indexOf(cItem.key) !== -1"
               :index="cItem.key"
               :key="cItem.key"
+              @click="itemClick(cItem.key)"
             >
               <i :class="cItem.icon"></i>
               <span slot="title">{{ cItem.title }}</span>
@@ -36,6 +40,7 @@
           v-if="menus.indexOf(item.key) !== -1"
           :index="item.key"
           :key="item.key"
+          @click="itemClick(item.key)"
         >
           <i :class="item.icon"></i>
           <span slot="title">{{ item.title }}</span>
@@ -46,22 +51,25 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 import menuConfig from "../utils/menuConfig";
 export default {
   data() {
     return {
       menuConfig,
-      menus: this.$store.state.userInfo.user.menus,
+      activeKey: this.$route.path,
     };
   },
+  computed: {
+    menus(){
+      return this.$store.state.userInfo.user.menus
+    }
+  },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log("@", key, keyPath);
+    itemClick(key) {
+      this.activeKey = key;
     },
-    handleClose(key, keyPath) {
-      console.log("!", key, keyPath);
-    },
-  }
+  },
 };
 </script>
 

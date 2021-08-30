@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import { reqLogin, reqRoleList } from '../api'
-import { setUser_l, setUser_s } from '../utils/localStorage'
+import { setUser_l, setUser_s, clearUser_l, clearUser_s } from '../utils/localStorage'
 
 export default {
     namespaced: true,
@@ -42,12 +42,20 @@ export default {
         },
         send(context, value) {
             context.commit('LOGIN', value)
+        },
+        logout(context) {
+            clearUser_l()
+            clearUser_s()
+            context.commit('LOGOUT')
         }
     },
 
     mutations: {
         LOGIN(state, value) {
             state.user = value
+        },
+        LOGOUT(state) {
+            state.user = null
         }
     },
     state: {

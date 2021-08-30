@@ -10,12 +10,9 @@
       </div>
     </el-col>
     <el-col :span="21" class="right-wrapper">
-      <div class="header"></div>
+      <AdminHeader class="header" />
       <div class="main">
-        <div class="test">
-          123
-          <router-view/>
-        </div>
+        <router-view />
       </div>
       <div class="footer">使用Chrome浏览器获得更佳体验效果</div>
     </el-col>
@@ -23,7 +20,8 @@
 </template>
 
 <script>
-import Menu from '../Components/Menu'
+import Menu from "../Components/Menu";
+import AdminHeader from "../Components/AdminHeader";
 import logo from "../Images/logo.png";
 export default {
   data() {
@@ -32,7 +30,8 @@ export default {
     };
   },
   components: {
-    Menu
+    Menu,
+    AdminHeader,
   },
 };
 </script>
@@ -41,7 +40,7 @@ export default {
 .admin-wrapper {
   display: flex;
   height: 100%;
-  min-height: 100%;
+  min-height: 750px;
   .left-wrapper {
     display: flex;
     flex-direction: column;
@@ -52,9 +51,9 @@ export default {
     max-width: 200px;
     background-color: rgb(255, 160, 176);
     .header {
+      display: flex;
       min-height: 80px;
       height: 80px;
-      display: flex;
       align-items: center;
       img {
         width: 45px;
@@ -83,7 +82,6 @@ export default {
     .header {
       min-height: 80px;
       height: 80px;
-      padding: 10px;
       background-color: rgb(255, 193, 204);
       user-select: none;
     }
@@ -102,9 +100,5 @@ export default {
       text-align: center;
     }
   }
-}
-.test {
-  height: 1800px;
-  background-color: green;
 }
 </style>

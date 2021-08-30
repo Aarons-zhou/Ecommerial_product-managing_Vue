@@ -7,7 +7,12 @@ import {
   Checkbox,
   Message,
   Row, Col,
-  Menu, Submenu, MenuItem, MenuItemGroup
+  Menu, Submenu, MenuItem,
+  Dialog,
+  Card,
+  Table,TableColumn,
+  Select,Option,
+  Tree
 } from 'element-ui';
 import App from './App.vue'
 import router from './router'
@@ -24,7 +29,13 @@ Vue.component(Col.name, Col)
 Vue.component(Menu.name, Menu)
 Vue.component(Submenu.name, Submenu)
 Vue.component(MenuItem.name, MenuItem)
-Vue.component(MenuItemGroup.name, MenuItemGroup)
+Vue.component(Dialog.name, Dialog)
+Vue.component(Card.name, Card)
+Vue.component(Table.name, Table)
+Vue.component(TableColumn.name, TableColumn)
+Vue.component(Select.name, Select)
+Vue.component(Option.name, Option)
+Vue.component(Tree.name, Tree)
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false

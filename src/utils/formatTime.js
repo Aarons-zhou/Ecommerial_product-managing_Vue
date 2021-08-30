@@ -1,5 +1,5 @@
 /*
-    时间转换
+    时间格式转换
 */
 const transfer = number => {
     return number < 10 ? '0' + number : '' + number
@@ -12,11 +12,11 @@ const getTime = dateInstance => {
     const hour = dateInstance.getHours()
     const minute = dateInstance.getMinutes()
     const second = dateInstance.getSeconds()
-    return [year,month,date].map(transfer).join('-') + ' ' + [hour,minute,second].map(transfer).join(':')
+    return [year, month, date].map(transfer).join('-') + ' ' + [hour, minute, second].map(transfer).join(':')
 }
 
 //接收Date实例,或时间戳,返回标准（自定义）的时间表示
-export const transferTime = time => {
+export const formatTime = time => {
     //接收Date实例
     if (time instanceof Date) {
         return getTime(time)
@@ -28,10 +28,10 @@ export const transferTime = time => {
 }
 
 //修正服务器时间
-export const putServerTime = time => {
-    if(time){
+export const putServerTime = (time, num) => {
+    if (time) {
         const errTime = new Date(time).getTime()
-        const correctTime = errTime + 46800000
+        const correctTime = errTime + num * 60 * 60 * 1000
         return getTime(new Date(correctTime))
-    }else return ''
+    } else return ''
 }
