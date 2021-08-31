@@ -1,5 +1,5 @@
 <template>
-  <div ref="pageCategory">
+  <div ref="pageCategory" class="pageCategory">
     <el-card>
       <div slot="header" class="clearfix">
         <template v-if="currentCategory.parentId === 0">
@@ -29,8 +29,9 @@
           border
           style="width: 100%"
           row-class-name="table-row"
+          stripe
         >
-          <el-table-column prop="name" label="菜单名"> </el-table-column>
+          <el-table-column prop="name" label="菜单名" />
           <el-table-column fixed="right" label="操作" width="200">
             <template slot-scope="scope">
               <LinkButton
@@ -55,12 +56,8 @@
     >
       <el-form label-width="80px" size="mini">
         <el-form-item v-if="visible === 1" label="所属分类">
-          <el-select
-            v-model="currentCategory.createParentId"
-            placeholder="请选择"
-            class="select"
-          >
-            <el-option :key="0" label="一级分类" :value="0" />
+          <el-select v-model="currentCategory.createParentId" class="select">
+            <el-option label="一级分类" :value="0" />
             <el-option
               v-for="item in primaryCategory"
               :key="item.id"
@@ -109,8 +106,13 @@ export default {
     };
   },
   computed: {
-    isModalShow() {
-      return !!this.visible;
+    isModalShow: {
+      get() {
+        return !!this.visible;
+      },
+      set(value) {
+        if (!value) this.visible = 0;
+      },
     },
   },
   methods: {
@@ -143,7 +145,7 @@ export default {
         target: this.$refs.pageCategory,
       });
       setTimeout(() => {
-        this.ssecondaryCategory = [];
+        this.secondaryCategory = [];
         this.currentCategory = {
           id: "", //当前操作的菜单项id，只有修改时有值
           name: "", //当前操作的菜单项名字
@@ -255,10 +257,12 @@ export default {
 </script>
 
 <style lang='less'>
-.table-row {
-  height: 60px;
-}
-.select {
-  width: 100%;
+.pageCategory {
+  .table-row {
+    height: 60px;
+  }
+  .select {
+    width: 100%;
+  }
 }
 </style>

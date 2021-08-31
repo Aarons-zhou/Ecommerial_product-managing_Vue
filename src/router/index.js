@@ -5,6 +5,8 @@ import Admin from '../Pages/Admin'
 import Home from '../Pages/Home'
 import Category from '../Pages/Category'
 import Product from '../Pages/Product'
+import ProductCreate from '../Pages/Product/ProductCreate'
+import ProductRetrieve from '../Pages/Product/ProductRetrieve'
 import Role from '../Pages/Role'
 import User from '../Pages/User'
 import ChartBar from '../Pages/ChartBar'
@@ -34,6 +36,16 @@ const router = new VueRouter({
                 {
                     path: 'product',
                     component: Product,
+                },
+                {
+                    name:'productCreate',
+                    path:'product/create',
+                    component:ProductCreate
+                },
+                {
+                    name:'productRetrieve',
+                    path:'product/retrieve',
+                    component:ProductRetrieve
                 },
                 {
                     path: 'role',

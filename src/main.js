@@ -12,7 +12,10 @@ import {
   Card,
   Table,TableColumn,
   Select,Option,
-  Tree
+  Tree,
+  Pagination,
+  Divider,
+  Cascader
 } from 'element-ui';
 import App from './App.vue'
 import router from './router'
@@ -36,6 +39,9 @@ Vue.component(TableColumn.name, TableColumn)
 Vue.component(Select.name, Select)
 Vue.component(Option.name, Option)
 Vue.component(Tree.name, Tree)
+Vue.component(Pagination.name, Pagination)
+Vue.component(Divider.name, Divider)
+Vue.component(Cascader.name, Cascader)
 
 Vue.use(VueRouter)
 Vue.config.productionTip = false
